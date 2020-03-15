@@ -210,75 +210,353 @@ class Elexon(object):
         pass
 
     # Legacy BMRS Data
-    # Temperature Data
-    # Bid Offer Level Data
-    # Credit Default Notice Data
-    # System Warnings
-    # Balancing Services Adjustment Action Data
-    # Balancing Service Adjustment Data
-    # Rolling System Frequency
-    # Market Index Data
-    # Daily energy Volume Data
-    # Non BM STOR Instructed Volume Data
-    # Applicable Balancing Services Volume Data
-    # Rolling System Demand
-    # Peak Wind Generation Forecast
-    # Wind Generation Forecast and Out-turn Data
-    # Generation By Fuel Type (Current)
-    # Generation by Fuel Type (24H Instant Data)
-    # Half Hourly Outturn Generation by Fuel Type
-    # Half Hourly Interconnector Outturn Generation
-    # National Output Useable (2-14 Days Ahead)
-    # National Output Useable by Fuel Type (2-14 Days Ahead)
-    # National Output Useable by Fuel Type and BM Unit (2-14 Days Ahead)
-    # National Output Useable (2- 52 Weeks Ahead)
-    # National Output Useable by Fuel type (2-52 Weeks Ahead)
-    # National Output Useable by Fuel Type and BM Unit (2-52 Weeks Ahead)
-    # National Output Useable Data (1 Year)
-    # National Output Useable Data (2 Year)
-    # National Output Useable Data (3 Year)
-    # National Output Useable Data (4 Year)
-    # National Output Useable Data (5 Year)
-    # Zonal Output Useable (2- 14 Days Ahead)
-    # Zonal Output Useable (2-52 Weeks Ahead)
-    # Zonal Output Useable Data for 1 Year Ahead
-    # Zonal Output Useable Data for 2 Year Ahead
-    # Zonal Output Useable Data for 3 Year Ahead
-    # Zonal Output Useable Data for 4 Year Ahead
-    # Zonal Output Useable Data for 5 Year Ahead
-    # Initial Demand Outturn
-    # Forecast Day and Day Ahead Margin and Imbalance Data
-    # Forecast Day and Day Ahead Demand Data
-    # Demand & Surplus Forecast Data (2-14 Days Ahead)
-    # Demand & Surplus Forecast Data (2-52 Weeks Ahead)
-    # SO-SO Prices (SO-SO)
-    # SO SO Trades
-    # Peak Demand – Yesterday/Today/Tomorrow
-    # Indicative Peak Demand Information (Using Operational Metering Data)
-    # System Demand
-    # Indicative Triad Demand Information (Using Settlement Metering Data)
-    # Physical Data
-    # Dynamic Data
-    # Derived BM Unit Data
-    # Derived System Wide Data
-    # Detailed System Prices
-    # Market Depth Data
-    # Latest Acceptances
-    # Historic Acceptances
-    # System Messages
-    # BM Unit Search
-    # System Warning (Today/Tomorrow)
-    # System Warning (Historic)
-    # Loss of Load Probability
-    # Demand Control Instructions
-    # STOR Availability Window
-    # Trading Unit Delivery Mode
-    # Settlement Exchange Rate
+    def TEMP(self):
+        """Temperature Data
+        """
+        pass
+
+    def BOD(self):
+        """Bid Offer Level Data
+        """
+        pass
+
+    def CDN(self):
+        """Credit Default Notice Data
+        """
+        pass
+
+    def SYSWARN(self):
+        """System Warnings
+        """
+        pass
+
+    def DISBSAD(self):
+        """Balancing Services Adjustment Action Data
+        """
+        pass
+
+    def NETBSAD(self):
+        """Balancing Service Adjustment Data
+        """
+        pass
+
+    def FREQ(self):
+        """Rolling System Frequency
+        """
+        pass
+
+    def MID(self):
+        """Market Index Data
+        """
+        pass
+
+    def DEVINDOD(self):
+        """Daily energy Volume Data
+        """
+        pass
+
+    def NONBM(self):
+        """Non BM STOR Instructed Volume Data
+        """
+        pass
+
+    def QAS(self):
+        """Applicable Balancing Services Volume Data
+        """
+        pass
+
+    def ROLSYSDEM(self):
+        """Rolling System Demand
+        """
+        pass
+
+    def WINDFORPK(self):
+        """Peak Wind Generation Forecast
+        """
+        pass
+
+    def WINDFORFUELHH(self):
+        """Wind Generation Forecast and Out-turn Data
+        """
+        pass
+
+    def FUELINSTHHCUR(self):
+        """Generation By Fuel Type (Current)
+        """
+        pass
+
+    def FUELINST(self):
+        """Generation by Fuel Type (24H Instant Data)
+        """
+        pass
+
+    def FUELHH(self):
+        """Half Hourly Outturn Generation by Fuel Type
+        """
+        pass
+
+    def INTERFUELHH(self):
+        """Half Hourly Interconnector Outturn Generation
+        """
+        pass
+
+    def NOU2T14D(self):
+        """National Output Useable (2-14 Days Ahead)
+        """
+        pass
+
+    def FOU2T14D(self):
+        """National Output Useable by Fuel Type (2-14 Days Ahead)
+        """
+        pass
+
+    def UOU2T14D(self):
+        """National Output Useable by Fuel Type and BM Unit (2-14 Days Ahead)
+        """
+        pass
+
+    def NOU2T52W(self):
+        """National Output Useable (2- 52 Weeks Ahead)
+        """
+        pass
+
+    def FOU2T52W(self):
+        """National Output Useable by Fuel type (2-52 Weeks Ahead)
+        """
+        pass
+
+    def UOU2T52W(self):
+        """National Output Useable by Fuel Type and BM Unit (2-52 Weeks Ahead)
+        """
+        pass
+
+    def NOUY1(self):
+        """National Output Useable Data (1 Year)
+        """
+        pass
+
+    def NOUY2(self):
+        """National Output Useable Data (2 Year)
+        """
+        pass
+
+    def NOUY3(self):
+        """National Output Useable Data (3 Year)
+        """
+        pass
+
+    def NOUY4(self):
+        """National Output Useable Data (4 Year)
+        """
+        pass
+
+    def NOUY5(self):
+        """National Output Useable Data (5 Year)
+        """
+        pass
+
+    def ZOU2T14D(self):
+        """Zonal Output Useable (2- 14 Days Ahead)
+        """
+        pass
+
+    def ZOU2T52W(self):
+        """Zonal Output Useable (2-52 Weeks Ahead)
+        """
+        pass
+
+    def ZOUY1(self):
+        """Zonal Output Useable Data for 1 Year Ahead
+        """
+        pass
+
+    def ZOUY2(self):
+        """Zonal Output Useable Data for 2 Year Ahead
+        """
+        pass
+
+    def ZOUY3(self):
+        """Zonal Output Useable Data for 3 Year Ahead
+        """
+        pass
+
+    def ZOUY4(self):
+        """Zonal Output Useable Data for 4 Year Ahead
+        """
+        pass
+
+    def ZOUY5(self):
+        """Zonal Output Useable Data for 5 Year Ahead
+        """
+        pass
+
+    def INDOITSDO(self):
+        """Initial Demand Outturn
+        """
+        pass
+
+    def MELIMBALNGC(self):
+        """Forecast Day and Day Ahead Margin and Imbalance Data
+        """
+        pass
+
+    def FORDAYDEM(self):
+        """Forecast Day and Day Ahead Demand Data
+        """
+        pass
+
+    def DEMMF2T14D(self):
+        """Demand & Surplus Forecast Data (2-14 Days Ahead)
+        """
+        pass
+
+    def DEMMF2T52W(self):
+        """Demand & Surplus Forecast Data (2-52 Weeks Ahead)
+        """
+        pass
+
+    def SOSOP(self):
+        """SO-SO Prices (SO-SO)
+        """
+        pass
+
+    def SOSOT(self):
+        """SO SO Trades
+        """
+        pass
+
+    def PKDEMYESTTDYTOM(self):
+        """Peak Demand – Yesterday/Today/Tomorrow
+        """
+        pass
+
+    def INDPKDEMINFO(self):
+        """Indicative Peak Demand Information (Using Operational Metering Data)
+        """
+        pass
+
+    def SYSDEM(self):
+        """System Demand
+        """
+        pass
+
+    def INDTRIADDEMINFO(self):
+        """Indicative Triad Demand Information (Using Settlement Metering Data)
+        """
+        pass
+
+    def PHYBMDATA(self):
+        """Physical Data
+        """
+        pass
+
+    def DYNBMDATA(self):
+        """Dynamic Data
+        """
+        pass
+
+    def DERBMDATA(self):
+        """Derived BM Unit Data
+        """
+        pass
+
+    def DERSYSDATA(self):
+        """Derived System Wide Data
+        """
+        pass
+
+    def DETSYSPRICES(self):
+        """Detailed System Prices
+        """
+        pass
+
+    def MKTDEPTHDATA(self):
+        """Market Depth Data
+        """
+        pass
+
+    def LATESTACCEPTS(self):
+        """Latest Acceptances
+        """
+        pass
+
+    def HISTACCEPTS(self):
+        """Historic Acceptances
+        """
+        pass
+
+    def SYSMSG(self):
+        """System Messages
+        """
+        pass
+
+    def BMUNITSEARCH(self):
+        """BM Unit Search
+        """
+        pass
+
+    def YSWARNTDYTOM(self):
+        """System Warning (Today/Tomorrow)
+        """
+        pass
+
+    def HISTSYSWARN(self):
+        """System Warning (Historic)
+        """
+        pass
+
+    def LOLPDRM(self):
+        """Loss of Load Probability
+        """
+        pass
+
+    def DEMCI(self):
+        """Demand Control Instructions
+        """
+        pass
+
+    def STORAW(self):
+        """STOR Availability Window
+        """
+        pass
+
+    def TRADINGUNIT(self):
+        """Trading Unit Delivery Mode
+        """
+        pass
+
+    def EURGBFXDATA(self):
+        """Settlement Exchange Rate
+        """
+        pass
 
     # Replacement Reserve Data
-    # RR Bid Data
-    # RR Aggregated Information Data
-    # RR Activation Data
-    # RR Interconnector Schedule
-    # RR GB Need Met
-    # RR Indicative Cashflow
+    def RRBidData(self):
+        """RR Bid Data
+        """
+        pass
+
+    def RRAggregatedInfo(self):
+        """RR Aggregated Information Data
+        """
+        pass
+
+    def RRActivation(self):
+        """RR Activation Data
+        """
+        pass
+
+    def RRINTCON(self):
+        """RR Interconnector Schedule
+        """
+        pass
+
+    def RRGBNM(self):
+        """RR GB Need Met
+        """
+        pass
+
+    def RRCashflow(self):
+        """RR Indicative Cashflow
+        """
+        pass
