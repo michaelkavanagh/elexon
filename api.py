@@ -10,46 +10,89 @@ class Elexon(object):
         self.apikey = apikey
         self.version = 'v1'
 
-    def _url(self, report, version):
+    def __get_url(self, report, version):
         return "https://api.bmreports.com/BMRS/{}/{}".format(report.upper(), version)
 
-    def get_stuff(self, report, payload, servicetype):
+    def query(self, report, payload, servicetype='xml'):
+        url = self.__get_url( report, self.version )
         payload.update({ 'APIKey': self.apikey, 'ServiceType': servicetype })
-        request = requests.get( self._url( report, self.version ), params=payload)
+        request = requests.get( url, params=payload)
+        request.raise_for_status()
+        # print(request.url)
         return request.text
 
     # Transparency Data and REMIT
-    def B1720(self):
-        pass
-
-    def B1730(self):
-        pass
-
-    def B1740(self):
-        pass
-
-    def B1750(self):
-        pass
-
-    def B1760(self):
-        pass
-
-    def B1770(self):
-        pass
-
-    def B1780(self):
-        pass
-
-    def B1790(self):
-        pass
+    def B1720(self, SettlementDate, Period = '*'):
         """Amount of Balancing Reserves Under Contract"""
+        endpoint = 'B1720'
+        query_parameters = {
+            'SettlementDate': SettlementDate,
+            'Period': Period
+        }
+        return self.query(endpoint, query_parameters)
+
+    def B1730(self, SettlementDate, Period = '*'):
         """Prices Of Procured Balancing Reserves"""
+        endpoint = 'B1730'
+        query_parameters = {
+            'SettlementDate': SettlementDate,
+            'Period': Period
+        }
+        return self.query(endpoint, query_parameters)
+
+    def B1740(self, SettlementDate, Period = '*'):
         """Accepted Aggregated Offers"""
+        endpoint = 'B1740'
+        query_parameters = {
+            'SettlementDate': SettlementDate,
+            'Period': Period
+        }
+        return self.query(endpoint, query_parameters)
+
+    def B1750(self, SettlementDate, Period = '*'):
         """Activated Balancing Energy"""
+        endpoint = 'B1750'
+        query_parameters = {
+            'SettlementDate': SettlementDate,
+            'Period': Period
+        }
+        return self.query(endpoint, query_parameters)
+
+    def B1760(self, SettlementDate, Period = '*'):
         """Prices Of Activated Balancing Energy"""
+        endpoint = 'B1760'
+        query_parameters = {
+            'SettlementDate': SettlementDate,
+            'Period': Period
+        }
+        return self.query(endpoint, query_parameters)
+
+    def B1770(self, SettlementDate, Period = '*'):
         """Imbalance Prices"""
+        endpoint = 'B1770'
+        query_parameters = {
+            'SettlementDate': SettlementDate,
+            'Period': Period
+        }
+        return self.query(endpoint, query_parameters)
+
+    def B1780(self, SettlementDate, Period = '*'):
         """Aggregated Imbalance Volumes"""
+        endpoint = 'B1780'
+        query_parameters = {
+            'SettlementDate': SettlementDate,
+            'Period': Period
+        }
+        return self.query(endpoint, query_parameters)
+
+    def B1790(self, Year, Month):
         """Financial Expenses and Income For Balancing"""
+        endpoint = 'B1790'
+        query_parameters = {
+            'Year': Year,
+            'Month': Month
+        }
+        return self.query(endpoint, query_parameters)
 
     def B1810(self):
         """CrossBorder Balancing Volumes of Exchanged Bids and Offers"""
@@ -103,13 +146,24 @@ class Elexon(object):
         """Generation forecasts for Wind and Solar"""
         pass
 
-    def B1610(self):
-        pass
+    def B1610(self, SettlementDate, NGCBMUnitID, Period = '*'):
         """Actual Generation Output per Generation Unit"""
+        endpoint = 'B1610'
+        query_parameters = {
+            'SettlementDate': SettlementDate,
+            'NGCBMUnitID': NGCBMUnitID,
+            'Period': Period
+        }
+        return self.query(endpoint, query_parameters)
 
-    def B1620(self):
-        pass
+    def B1620(self, SettlementDate, Period = '*'):
         """Actual Aggregated Generation perType"""
+        endpoint = 'B1620'
+        query_parameters = {
+            'SettlementDate': SettlementDate,
+            'Period': Period
+        }
+        return self.query(endpoint, query_parameters)
 
     def B1630(self):
         """Actual Or Estimated Wind and Solar Power Generation"""
@@ -200,9 +254,14 @@ class Elexon(object):
         """Rolling System Frequency"""
         pass
 
-    def MID(self):
-        pass
+    def MID(self, SettlementDate, Period = '*'):
         """Market Index Data"""
+        endpoint = 'MID'
+        query_parameters = {
+            'SettlementDate': SettlementDate,
+            'Period': Period
+        }
+        return self.query(endpoint, query_parameters)
 
     def DEVINDOD(self):
         """Daily energy Volume Data"""
@@ -424,9 +483,14 @@ class Elexon(object):
         """Trading Unit Delivery Mode"""
         pass
 
-    def EURGBFXDATA(self):
-        pass
+    def EURGBFXDATA(self, SettlementDayFrom, SettlementDayTo):
         """Settlement Exchange Rate"""
+        endpoint = 'EURGBFXDATA'
+        query_parameters = {
+            'SettlementDayFrom': SettlementDayFrom,
+            'SettlementDayTo': SettlementDayTo
+        }
+        return self.query(endpoint, query_parameters)
 
     # Replacement Reserve Data
     def RRBidData(self):
