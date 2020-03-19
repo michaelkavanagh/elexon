@@ -94,45 +94,92 @@ class Elexon(object):
         }
         return self.query(endpoint, query_parameters)
 
-    def B1810(self):
+    def B1810(self, SettlementDate, Period = '*'):
         """CrossBorder Balancing Volumes of Exchanged Bids and Offers"""
-        pass
+        endpoint = 'B1810'
+        query_parameters = {
+            'SettlementDate': SettlementDate,
+            'Period': Period
+        }
+        return self.query(endpoint, query_parameters)
 
-    def B1820(self):
+    def B1820(self, SettlementDate, Period = '*'):
         """CrossBorder Balancing Prices"""
-        pass
+        endpoint = 'B1820'
+        query_parameters = {
+            'SettlementDate': SettlementDate,
+            'Period': Period
+        }
+        return self.query(endpoint, query_parameters)
 
-    def B1830(self):
+    def B1830(self, SettlementDate, Period = '*'):
         """Crossborder Balancing Energy Activated"""
-        pass
+        endpoint = 'B1830'
+        query_parameters = {
+            'SettlementDate': SettlementDate,
+            'Period': Period
+        }
+        return self.query(endpoint, query_parameters)
 
-    def B0610(self):
+    def B0610(self, SettlementDate, Period = '*'):
         """Actual Total Load per Bidding Zone"""
-        pass
+        endpoint = 'B0610'
+        query_parameters = {
+            'SettlementDate': SettlementDate,
+            'Period': Period
+        }
+        return self.query(endpoint, query_parameters)
 
-    def B0620(self):
+    def B0620(self, SettlementDate, Period = '*'):
         """Day-Ahead Total Load Forecast per Bidding Zone"""
-        pass
+        endpoint = 'B0620'
+        query_parameters = {
+            'SettlementDate': SettlementDate,
+            'Period': Period
+        }
+        return self.query(endpoint, query_parameters)
 
-    def B0630(self):
+    def B0630(self, Year, Week):
         """Week-Ahead Total Load Forecast per Bidding Zone"""
-        pass
+        endpoint = 'B0630'
+        query_parameters = {
+            'Year': Year,
+            'Week': Week
+        }
+        return self.query(endpoint, query_parameters)
 
-    def B0640(self):
+    def B0640(self, Year, Month):
         """Month-Ahead Total Load Forecast Per Bidding Zone"""
-        pass
+        endpoint = 'B0640'
+        query_parameters = {
+            'Year': Year,
+            'Month': Month
+        }
+        return self.query(endpoint, query_parameters)
 
-    def B0650(self):
+    def B0650(self, Year):
         """Year Ahead Total Load Forecast per Bidding Zone"""
-        pass
+        endpoint = 'B0650'
+        query_parameters = {
+            'Year': Year
+        }
+        return self.query(endpoint, query_parameters)
 
-    def B0810(self):
+    def B0810(self, Year):
         """Year Ahead Forecast Margin"""
-        pass
+        endpoint = 'B0810'
+        query_parameters = {
+            'Year': Year
+        }
+        return self.query(endpoint, query_parameters)
 
-    def B1410(self):
+    def B1410(self, Year):
         """Installed Generation Capacity Aggregated"""
-        pass
+        endpoint = 'B1410'
+        query_parameters = {
+            'Year': Year
+        }
+        return self.query(endpoint, query_parameters)
 
     def B1420(self):
         """Installed Generation Capacity per Unit"""
