@@ -24,7 +24,7 @@ from elexon import Elexon
 api = Elexon('API_KEY') # available for free from the Elexon Portal
 
 # Actual Generation Output per Generation Unit
-generation = api.transparency.B1620(SettlementDate = '2020-01-01', Period = '5')
+generation = api.Transparency.B1620(SettlementDate = '2020-01-01', Period = '5')
 ```
 
 ## Further Reading
