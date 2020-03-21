@@ -181,17 +181,31 @@ class Elexon(object):
         }
         return self.query(endpoint, query_parameters)
 
-    def B1420(self):
+    def B1420(self, Year):
         """Installed Generation Capacity per Unit"""
-        pass
+        endpoint = 'B1420'
+        query_parameters = {
+            'Year': Year
+        }
+        return self.query(endpoint, query_parameters)
 
-    def B1430(self):
+    def B1430(self, SettlementDate, Period = '*'):
         """Day-Ahead Aggregated Generation"""
-        pass
+        endpoint = 'B1430'
+        query_parameters = {
+            'SettlementDate': SettlementDate,
+            'Period': Period
+        }
+        return self.query(endpoint, query_parameters)
 
-    def B1440(self):
+    def B1440(self, SettlementDate, Period = '*'):
         """Generation forecasts for Wind and Solar"""
-        pass
+        endpoint = 'B1440'
+        query_parameters = {
+            'SettlementDate': SettlementDate,
+            'Period': Period
+        }
+        return self.query(endpoint, query_parameters)
 
     def B1610(self, SettlementDate, NGCBMUnitID, Period = '*'):
         """Actual Generation Output per Generation Unit"""
@@ -212,65 +226,168 @@ class Elexon(object):
         }
         return self.query(endpoint, query_parameters)
 
-    def B1630(self):
+    def B1630(self, SettlementDate, Period = '*'):
         """Actual Or Estimated Wind and Solar Power Generation"""
-        pass
+        endpoint = 'B1630'
+        query_parameters = {
+            'SettlementDate': SettlementDate,
+            'Period': Period
+        }
+        return self.query(endpoint, query_parameters)
 
-    def B0910(self):
+    def B0910(self, Year):
         """Expansion and Dismantling Projects"""
-        pass
+        endpoint = 'B0910'
+        query_parameters = {
+            'Year': Year
+        }
+        return self.query(endpoint, query_parameters)
 
-    def B1320(self):
+    def B1320(self, SettlementDate, Period = '*'):
         """Congestion Management Measures Countertrading"""
-        pass
+        endpoint = 'B1320'
+        query_parameters = {
+            'SettlementDate': SettlementDate,
+            'Period': Period
+        }
+        return self.query(endpoint, query_parameters)
 
-    def B1330(self):
+    def B1330(self, Year, Month):
         """Congestion Management Measures Costs of Congestion Management"""
-        pass
+        endpoint = 'B1330'
+        query_parameters = {
+            'Year': Year,
+            'Month': Month
+        }
+        return self.query(endpoint, query_parameters)
 
-    def B0710(self):
+    def B0710(self, StartDate, StartTime, EndDate, EndTime):
         """Planned Unavailability of Consumption Units"""
-        pass
+        endpoint = 'B0710'
+        query_parameters = {
+            'StartDate': StartDate,
+            'StartTime': StartTime,
+            'EndDate': EndDate,
+            'EndTime': EndTime
+        }
+        return self.query(endpoint, query_parameters)
 
-    def B0720(self):
+    def B0720(self, StartDate, StartTime, EndDate, EndTime):
         """Changes In Actual Availability Of Consumption Units"""
-        pass
+        endpoint = 'B0720'
+        query_parameters = {
+            'StartDate': StartDate,
+            'StartTime': StartTime,
+            'EndDate': EndDate,
+            'EndTime': EndTime
+        }
+        return self.query(endpoint, query_parameters)
 
-    def B1010(self):
+    def B1010(self, StartDate, StartTime, EndDate, EndTime):
         """Planned Unavailability In The Transmission Grid"""
-        pass
+        endpoint = 'B1010'
+        query_parameters = {
+            'StartDate': StartDate,
+            'StartTime': StartTime,
+            'EndDate': EndDate,
+            'EndTime': EndTime
+        }
+        return self.query(endpoint, query_parameters)
 
-    def B1020(self):
+    def B1020(self, StartDate, StartTime, EndDate, EndTime):
         """Changes In Actual Availability In The Transmission Grid"""
-        pass
+        endpoint = 'B1020'
+        query_parameters = {
+            'StartDate': StartDate,
+            'StartTime': StartTime,
+            'EndDate': EndDate,
+            'EndTime': EndTime
+        }
+        return self.query(endpoint, query_parameters)
 
-    def B1030(self):
+    def B1030(self, StartDate, StartTime, EndDate, EndTime):
         """Changes In Actual Availability of OffShore Grid Infrastructure"""
-        pass
+        endpoint = 'B1030'
+        query_parameters = {
+            'StartDate': StartDate,
+            'StartTime': StartTime,
+            'EndDate': EndDate,
+            'EndTime': EndTime
+        }
+        return self.query(endpoint, query_parameters)
 
-    def B1510(self):
+    def B1510(self, StartDate, StartTime, EndDate, EndTime):
         """Planned Unavailability of Generation Units"""
-        pass
+        endpoint = 'B1510'
+        query_parameters = {
+            'StartDate': StartDate,
+            'StartTime': StartTime,
+            'EndDate': EndDate,
+            'EndTime': EndTime
+        }
+        return self.query(endpoint, query_parameters)
 
-    def B1520(self):
+    def B1520(self, StartDate, StartTime, EndDate, EndTime):
         """Changes In Actual Availability of Generation Units"""
-        pass
+        endpoint = 'B1520'
+        query_parameters = {
+            'StartDate': StartDate,
+            'StartTime': StartTime,
+            'EndDate': EndDate,
+            'EndTime': EndTime
+        }
+        return self.query(endpoint, query_parameters)
 
-    def B1530(self):
+    def B1530(self, StartDate, StartTime, EndDate, EndTime):
         """Planned Unavailability of Production Units"""
-        pass
+        endpoint = 'B1530'
+        query_parameters = {
+            'StartDate': StartDate,
+            'StartTime': StartTime,
+            'EndDate': EndDate,
+            'EndTime': EndTime
+        }
+        return self.query(endpoint, query_parameters)
 
-    def B1540(self):
+    def B1540(self, StartDate, StartTime, EndDate, EndTime):
         """Changes In Actual Availability of Production Units"""
-        pass
+        endpoint = 'B1540'
+        query_parameters = {
+            'StartDate': StartDate,
+            'StartTime': StartTime,
+            'EndDate': EndDate,
+            'EndTime': EndTime
+        }
+        return self.query(endpoint, query_parameters)
 
-    def MessageListRetrieval(self):
+    def MessageListRetrieval(self, EventStart, EventEnd, PublicationFrom, PublicationTo, ParticipantId, MessageID, AssetID, EventType, FuelType, MessageType, UnavailabilityType):
         """REMIT Flow – Message List Retrieval"""
-        pass
+        endpoint = 'MessageListRetrieval'
+        query_parameters = {
+            'EventStart': EventStart,
+            'EventEnd': EventEnd,
+            'PublicationFrom': PublicationFrom,
+            'PublicationTo': PublicationTo,
+            'ParticipantId': ParticipantId,
+            'MessageID': MessageID,
+            'AssetID': AssetID,
+            'EventType': EventType,
+            'FuelType': FuelType,
+            'MessageType': MessageType,
+            'UnavailabilityType': UnavailabilityType
+        }
+        return self.query(endpoint, query_parameters)
 
-    def MessageDetailRetrieval(self):
+    def MessageDetailRetrieval(self, MessageId, ParticipantId, SequenceId, ActiveFlag):
         """REMIT Flow – Message Detail Retrieval"""
-        pass
+        endpoint = 'MessageDetailRetrieval'
+        query_parameters = {
+            'MessageId': MessageId,
+            'ParticipantId': ParticipantId,
+            'SequenceId': SequenceId,
+            'ActiveFlag': ActiveFlag
+        }
+        return self.query(endpoint, query_parameters)
 
     # Legacy BMRS Data
     def TEMP(self):
