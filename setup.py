@@ -4,7 +4,7 @@ with open("README.md", "r") as fh:
     long_description = fh.read()
 
 setuptools.setup(
-    name="elexon-bmrs-api",
+    name="elexon",
     version="0.0.1",
     author="Michael Kavanagh",
     author_email="michael@michaelkavanagh.me",
