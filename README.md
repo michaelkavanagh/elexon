@@ -2,7 +2,8 @@
 
 A simple wrapper for the Elexon BMRS API.
 
-***WIP:*** currently there is zero data validation and raw unparsed XML is returned.
+***WIP:*** currently there is zero data validation and raw unparsed `XML` is returned (as a dict)
+or the raw `csv` data is returned as a string.
 
 ## Installing
 

@@ -1,6 +1,7 @@
 from .methods import METHODS
 
 import requests
+import xmltodict
 
 ELEXON_URL = 'https://api.bmreports.com/BMRS/'
 
@@ -87,9 +88,10 @@ class Elexon(object):
     """The Elexon class provides convenient access to Elexon's BMRS API.
     """
 
-    def __init__(self, apikey=None):
+    def __init__(self, apikey, service_type = 'xml'):
         self.apikey = apikey
         self.version = 'v1'
+        self.service_type = service_type
         self.elexon_url = ELEXON_URL
 
         for namespace in METHODS:
@@ -99,7 +101,7 @@ class Elexon(object):
                  # 'elexon.%s' %
                  namespace))
 
-    def __call__(self, method=None, args=None):
+    def __call__(self, method = None, args = None):
         """Make a call to Elexon's server."""
         # for Django templates, if this object is called without any arguments
         # return the object itself
@@ -109,19 +111,25 @@ class Elexon(object):
         url = self.get_url( method, self.version )
         request = requests.get( url, params=args)
         request.raise_for_status()
-        print(request.url)
-        print()
-        return request.text
+        return self._parse_response(request.text, method)
 
-    def _add_session_args(self, args=None):
+    def _add_session_args(self, args = None):
         """Adds 'apikey' and 'ServiceType' to args, which are required for all API calls."""
         if args is None:
             args = {}
 
         args['APIKey'] = self.apikey
-        args['ServiceType'] = 'xml'
-
+        args['ServiceType'] = self.service_type
         return args
+
+    def _parse_response(self, response, method):
+        """Parses the response according to the service_type, which should be either 'csv' or 'xml'."""
+        if self.service_type == 'xml':
+            return xmltodict.parse(response)['response']
+        elif self.service_type == 'csv':
+            return response
+        else:
+            raise RuntimeError('Invalid service_type specified.')
 
     def get_url(self, report, version):
         return "https://api.bmreports.com/BMRS/{}/{}".format(report.upper(), version)
