@@ -1,7 +1,8 @@
-from .methods import METHODS
-
 import requests
-import xmltodict
+from datetime import date, datetime
+import xml.etree.ElementTree as ET
+
+from .methods import METHODS
 
 ELEXON_URL = 'https://api.bmreports.com/BMRS/'
 
@@ -109,7 +110,7 @@ class Elexon(object):
             return self
 
         url = self.get_url( method, self.version )
-        request = requests.get( url, params=args)
+        request = requests.get( url, params = args)
         request.raise_for_status()
         return self._parse_response(request.text, method)
 
@@ -126,10 +127,31 @@ class Elexon(object):
         """Parses the response according to the service_type, which should be either 'csv' or 'xml'."""
         if self.service_type == 'xml':
             return xmltodict.parse(response)['response']
+            root = ET.fromstring(response)
+            metadata = root.find('./responseMetadata')
+            self._check_error(metadata)
+
+            result = []
+            for item in root.findall('./responseBody/responseList/item'):
+                thing = {}
+                for child in item:
+                    thing[child.tag] = child.text
+
+                result.append(thing)
+
+            return result
         elif self.service_type == 'csv':
             return response
         else:
             raise RuntimeError('Invalid service_type specified.')
+
+    def _check_error(self, metadata):
+        """Checks if the given response is an error, and then raises the appropriate exception."""
+        httpCode = metadata.find('httpCode').text
+        errorType = metadata.find('errorType').text
+        description = metadata.find('description').text
+        if httpCode != '200':
+            raise Exception('Error {} ({}): {}'.format(httpCode, errorType, description))
 
     def get_url(self, report, version):
         return "https://api.bmreports.com/BMRS/{}/{}".format(report.upper(), version)
