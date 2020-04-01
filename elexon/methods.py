@@ -1,180 +1,184 @@
+from datetime import date, time, datetime
+
 METHODS = {
     # Transparency Data
     'Transparency': {
         'B1720': [
-            ('SettlementDate', str, []),
+            ('SettlementDate', date, []),
             ('Period', str, [])
         ],
         'B1730': [
-            ('SettlementDate', str, []),
+            ('SettlementDate', date, []),
             ('Period', str, [])
         ],
         'B1740': [
-            ('SettlementDate', str, []),
+            ('SettlementDate', date, []),
             ('Period', str, [])
         ],
         'B1750': [
-            ('SettlementDate', str, []),
+            ('SettlementDate', date, []),
             ('Period', str, [])
         ],
         'B1760': [
-            ('SettlementDate', str, []),
+            ('SettlementDate', date, []),
             ('Period', str, [])
         ],
         'B1770': [
-            ('SettlementDate', str, []),
+            ('SettlementDate', date, []),
             ('Period', str, [])
         ],
         'B1780': [
-            ('SettlementDate', str, []),
+            ('SettlementDate', date, []),
             ('Period', str, [])
         ],
         'B1790': [
-            ('SettlementDate', str, []),
-            ('Period', str, [])
+            ('Year', int, []),
+            ('Month', str, [])
         ],
         'B1810': [
-            ('SettlementDate', str, []),
+            ('SettlementDate', date, []),
             ('Period', str, [])
         ],
         'B1820': [
-            ('SettlementDate', str, []),
+            ('SettlementDate', date, []),
             ('Period', str, [])
         ],
         'B1830': [
-            ('SettlementDate', str, []),
+            ('SettlementDate', date, []),
             ('Period', str, [])
         ],
         'B0610': [
-            ('SettlementDate', str, []),
+            ('SettlementDate', date, []),
             ('Period', str, [])
         ],
         'B0620': [
-            ('SettlementDate', str, []),
+            ('SettlementDate', date, []),
             ('Period', str, [])
         ],
         'B0630': [
-            ('Year', str, []),
-            ('Week', str, [])
+            ('Year', int, []),
+            ('Week', int, [])
         ],
         'B0640': [
-            ('Year', str, []),
-            ('Month', str, [])
+            ('Year', int, []),
+            ('Month', str, [])  # either format MMM or MM(01-12)?
         ],
         'B0650': [
-            ('Year', str, [])
+            ('Year', int, [])
         ],
         'B0810': [
-            ('Year', str, [])
+            ('Year', int, [])
         ],
         'B1410': [
-            ('Year', str, [])
+            ('Year', int, [])
         ],
         'B1420': [
-            ('Year', str, [])
+            ('Year', int, [])
         ],
         'B1430': [
-            ('SettlementDate', str, []),
+            ('SettlementDate', date, []),
             ('Period', str, [])
         ],
         'B1440': [
-            ('SettlementDate', str, []),
+            ('SettlementDate', date, []),
             ('Period', str, [])
         ],
         'B1610': [
-            ('SettlementDate', str, []),
-            ('NGCBMUnitID', str, []),
-            ('Period', str, [])
+            ('SettlementDate', date, []),
+            ('Period', str, []),
+            ('NGCBMUnitID', str, [])
         ],
         'B1620': [
-            ('SettlementDate', str, []),
+            ('SettlementDate', date, []),
             ('Period', str, [])
         ],
         'B1630': [
-            ('SettlementDate', str, []),
+            ('SettlementDate', date, []),
             ('Period', str, [])
         ],
         'B0910': [
-            ('Year', str, [])
+            ('Year', int, [])
         ],
         'B1320': [
-            ('SettlementDate', str, []),
+            ('SettlementDate', date, []),
             ('Period', str, [])
         ],
         'B1330': [
-            ('Year', str, []),
-            ('Month', str, [])
+            ('Year', int, []),
+            ('Month', int, [])
         ],
         'B0710': [
-            ('StartDate', str, []),
-            ('StartTime', str, []),
-            ('EndDate', str, []),
-            ('EndTime', str, [])
+            ('StartDate', date, []),
+            ('StartTime', time, []),
+            ('EndDate', date, []),
+            ('EndTime', time, [])
         ],
         'B0720': [
-            ('StartDate', str, []),
-            ('StartTime', str, []),
-            ('EndDate', str, []),
-            ('EndTime', str, [])
+            ('StartDate', date, []),
+            ('StartTime', time, []),
+            ('EndDate', date, []),
+            ('EndTime', time, [])
         ],
         'B1010': [
-            ('StartDate', str, []),
-            ('StartTime', str, []),
-            ('EndDate', str, []),
-            ('EndTime', str, [])
+            ('StartDate', date, []),
+            ('StartTime', time, []),
+            ('EndDate', date, []),
+            ('EndTime', time, [])
         ],
         'B1020': [
-            ('StartDate', str, []),
-            ('StartTime', str, []),
-            ('EndDate', str, []),
-            ('EndTime', str, [])
+            ('StartDate', date, []),
+            ('StartTime', time, []),
+            ('EndDate', date, []),
+            ('EndTime', time, [])
         ],
         'B1030': [
-            ('StartDate', str, []),
-            ('StartTime', str, []),
-            ('EndDate', str, []),
-            ('EndTime', str, [])
+            ('StartDate', date, []),
+            ('StartTime', time, []),
+            ('EndDate', date, []),
+            ('EndTime', time, [])
         ],
         'B1510': [
-            ('StartDate', str, []),
-            ('StartTime', str, []),
-            ('EndDate', str, []),
-            ('EndTime', str, [])
+            ('StartDate', date, []),
+            ('StartTime', time, []),
+            ('EndDate', date, []),
+            ('EndTime', time, [])
         ],
         'B1520': [
-            ('StartDate', str, []),
-            ('StartTime', str, []),
-            ('EndDate', str, []),
-            ('EndTime', str, [])
+            ('StartDate', date, []),
+            ('StartTime', time, []),
+            ('EndDate', date, []),
+            ('EndTime', time, [])
         ],
         'B1530': [
-            ('StartDate', str, []),
-            ('StartTime', str, []),
-            ('EndDate', str, []),
-            ('EndTime', str, [])
+            ('StartDate', date, []),
+            ('StartTime', time, []),
+            ('EndDate', date, []),
+            ('EndTime', time, [])
         ],
         'B1540': [
-            ('StartDate', str, []),
-            ('StartTime', str, []),
-            ('EndDate', str, []),
-            ('EndTime', str, [])
+            ('StartDate', date, []),
+            ('StartTime', time, []),
+            ('EndDate', date, []),
+            ('EndTime', time, [])
         ]
     },
 
     # REMIT
     'REMIT': {
         'MessageListRetrieval': [
-            ('EventStart', str, ['optional']),
-            ('EventEnd', str, ['optional']),
-            ('PublicationFrom', str, ['optional']),
-            ('PublicationTo', str, ['optional']),
+            ('EventStart', date, ['optional']),
+            ('EventEnd', date, ['optional']),
+            ('PublicationFrom', date, ['optional']),
+            ('PublicationTo', date, ['optional']),
             ('ParticipantId', str, ['optional']),
             ('MessageID', str, ['optional']),
             ('AssetID', str, ['optional']),
             ('EventType', str, ['optional']),
             ('FuelType', str, ['optional']),
             ('MessageType', str, ['optional']),
-            ('UnavailabilityType', str, ['optional'])
+            ('UnavailabilityType', str, ['optional']),
+            ('AffectedUnitID', str, ['optional']),
+            ('ActiveFlag', str, ['optional'])
         ],
         'MessageDetailRetrieval': [
             ('MessageId', str, []),
@@ -187,11 +191,11 @@ METHODS = {
     # Legacy BMRS Data
     'Legacy': {
         'TEMP': [
-            ('FromDate', str, ['optional']),
-            ('ToDate', str, ['optional'])
+            ('FromDate', date, ['optional']),
+            ('ToDate', date, ['optional'])
         ],
         'BOD': [
-            ('SettlementDate', str, ['optional']),
+            ('SettlementDate', date, ['optional']),
             ('SettlementPeriod', str, ['optional']),
             ('BMUnitId', str, ['optional']),
             ('BMUnitType', str, ['optional']),
@@ -199,41 +203,41 @@ METHODS = {
             ('NGCBMUnitName', str, ['optional'])
         ],
         'CDN': [
-            ('FromClearedDate', str, ['optional']),
-            ('ToClearedDate', str, ['optional'])
+            ('FromClearedDate', date, ['optional']),
+            ('ToClearedDate', date, ['optional'])
         ],
         'SYSWARN': [
-            ('FromDate', str, ['optional']),
-            ('ToDate', str, ['optional'])
+            ('FromDate', date, ['optional']),
+            ('ToDate', date, ['optional'])
         ],
         'DISBSAD': [
-            ('SettlementDate', str, ['optional']),
+            ('SettlementDate', date, ['optional']),
             ('SettlementPeriod', str, ['optional'])
         ],
         'NETBSAD': [
-            ('SettlementDate', str, ['optional']),
+            ('SettlementDate', date, ['optional']),
             ('SettlementPeriod', str, ['optional']),
-            ('IsTwoDayWindow', str, ['optional'])
+            ('IsTwoDayWindow', bool, ['optional'])
         ],
         'FREQ': [
-            ('FromDateTime', str, ['optional']),
-            ('ToDateTime', str, ['optional'])
+            ('FromDateTime', datetime, ['optional']),
+            ('ToDateTime', datetime, ['optional'])
         ],
         'MID': [
-            ('FromSettlementDate', str, ['optional']),
-            ('ToSettlementDate', str, ['optional']),
+            ('FromSettlementDate', date, ['optional']),
+            ('ToSettlementDate', date, ['optional']),
             ('Period', str, ['optional'])
         ],
         'DEVINDOD': [
-            ('FromDateTime', str, ['optional']),
-            ('ToDateTime', str, ['optional'])
+            ('FromDate', date, ['optional']),
+            ('ToDate', date, ['optional'])
         ],
         'NONBM': [
-            ('FromDateTime', str, ['optional']),
-            ('ToDateTime', str, ['optional'])
+            ('FromDate', date, ['optional']),
+            ('ToDate', date, ['optional'])
         ],
         'QAS': [
-            ('SettlementDate', str, ['optional']),
+            ('SettlementDate', date, ['optional']),
             ('SettlementPeriod', str, ['optional']),
             ('BmUnitId', str, ['optional']),
             ('BMUnitType', str, ['optional']),
@@ -241,31 +245,31 @@ METHODS = {
             ('NgcBmUnitName', str, ['optional'])
         ],
         'ROLSYSDEM': [
-            ('FromDateTime', str, ['optional']),
-            ('ToDateTime', str, ['optional'])
+            ('FromDateTime', datetime, ['optional']),
+            ('ToDateTime', datetime, ['optional'])
         ],
         'WINDFORPK': [
-            ('FromDate', str, ['optional']),
-            ('ToDate', str, ['optional'])
+            ('FromDate', date, ['optional']),
+            ('ToDate', date, ['optional'])
         ],
         'WINDFORFUELHH': [
-            ('FromDate', str, ['optional']),
-            ('ToDate', str, ['optional'])
+            ('FromDate', date, ['optional']),
+            ('ToDate', date, ['optional'])
         ],
         'FUELINSTHHCUR': [
             ('FuelType', str, ['optional'])
         ],
         'FUELINST': [
-            ('FromDateTime', str, ['optional']),
-            ('ToDateTime', str, ['optional'])
+            ('FromDateTime', datetime, ['optional']),
+            ('ToDateTime', datetime, ['optional'])
         ],
         'FUELHH': [
-            ('FromDate', str, ['optional']),
-            ('ToDate', str, ['optional'])
+            ('FromDate', date, ['optional']),
+            ('ToDate', date, ['optional'])
         ],
         'INTERFUELHH': [
-            ('FromDate', str, ['optional']),
-            ('ToDate', str, ['optional'])
+            ('FromDate', date, ['optional']),
+            ('ToDate', date, ['optional'])
         ],
         'NOU2T14D': [],
         'FOU2T14D': [],
@@ -286,37 +290,37 @@ METHODS = {
         'ZOUY4': [],
         'ZOUY5': [],
         'INDOITSDO': [
-            ('FromDate', str, ['optional']),
-            ('ToDate', str, ['optional'])
+            ('FromDate', date, ['optional']),
+            ('ToDate', date, ['optional'])
         ],
         'MELIMBALNGC': [
             ('ZoneIdentifier', str, ['optional']),
-            ('FromDate', str, ['optional']),
-            ('ToDate', str, ['optional'])
+            ('FromDate', date, ['optional']),
+            ('ToDate', date, ['optional'])
         ],
         'FORDAYDEM': [
             ('ZoneIdentifier', str, ['optional']),
-            ('FromDate', str, ['optional']),
-            ('ToDate', str, ['optional'])
+            ('FromDate', date, ['optional']),
+            ('ToDate', date, ['optional'])
         ],
         'DEMMF2T14D': [],
         'DEMMF2T52W': [],
         'SOSOP': [
-            ('SettlementDate', str, ['optional']),
-            ('StartTime', str, ['optional']),
+            ('SettlementDate', date, ['optional']),
+            ('StartTime', time, ['optional']),
             ('TradeType', str, ['optional']),
-            ('IsTwoDayWindow', str, ['optional'])
+            ('IsTwoDayWindow', bool, ['optional'])
         ],
         'SOSOT': [],
         'PKDEMYESTTDYTOM': [],
         'INDPKDEMINFO': [],
         'SYSDEM': [
-            ('FromDate', str, ['optional']),
-            ('ToDate', str, ['optional'])
+            ('FromDate', date, ['optional']),
+            ('ToDate', date, ['optional'])
         ],
         'INDTRIADDEMINFO': [],
         'PHYBMDATA': [
-            ('SettlementDate', str, ['optional']),
+            ('SettlementDate', date, ['optional']),
             ('SettlementPeriod', str, ['optional']),
             ('BMUnitId', str, ['optional']),
             ('BMUnitType', str, ['optional']),
@@ -324,7 +328,7 @@ METHODS = {
             ('NGCBMUnitName', str, ['optional'])
         ],
         'DYNBMDATA': [
-            ('SettlementDate', str, ['optional']),
+            ('SettlementDate', date, ['optional']),
             ('SettlementPeriod', str, ['optional']),
             ('BMUnitId', str, ['optional']),
             ('BMUnitType', str, ['optional']),
@@ -332,7 +336,7 @@ METHODS = {
             ('NGCBMUnitName', str, ['optional'])
         ],
         'DERBMDATA': [
-            ('SettlementDate', str, ['optional']),
+            ('SettlementDate', date, ['optional']),
             ('SettlementPeriod', str, ['optional']),
             ('BMUnitId', str, ['optional']),
             ('BMUnitType', str, ['optional']),
@@ -340,20 +344,20 @@ METHODS = {
             ('NGCBMUnitName', str, ['optional'])
         ],
         'DERSYSDATA': [
-            ('FromSettlementDate', str, ['optional']),
-            ('ToSettlementDate', str, ['optional']),
+            ('FromSettlementDate', date, ['optional']),
+            ('ToSettlementDate', date, ['optional']),
             ('SettlementPeriod', str, ['optional'])
         ],
         'DETSYSPRICES': [
-            ('SettlementDate', str, ['optional']),
+            ('SettlementDate', date, ['optional']),
             ('SettlementPeriod', str, ['optional'])
         ],
         'MKTDEPTHDATA': [
-            ('SettlementDate', str, ['optional'])
+            ('SettlementDate', date, ['optional'])
         ],
         'LATESTACCEPTS': [],
         'HISTACCEPTS': [
-            ('SettlementDate', str, ['optional']),
+            ('SettlementDate', date, ['optional']),
             ('SettlementPeriod', str, ['optional'])
         ],
         'SYSMSG': [],
@@ -366,32 +370,32 @@ METHODS = {
         'SYSWARNTDYTOM': [],
         'HISTSYSWARN': [],
         'LOLPDRM': [
-            ('FromSettlementDate', str, ['optional']),
-            ('ToSettlementDate', str, ['optional'])
+            ('FromSettlementDate', date, ['optional']),
+            ('ToSettlementDate', date, ['optional'])
         ],
         'DEMCI': [
-            ('FromSettlementDate', str, ['optional']),
-            ('ToSettlementDate', str, ['optional'])
+            ('FromSettlementDate', date, ['optional']),
+            ('ToSettlementDate', date, ['optional'])
         ],
         'STORAW': [
-            ('FromSettlementDate', str, ['optional'])
+            ('FromSettlementDate', date, ['optional'])
         ],
         'TRADINGUNIT': [
-            ('SettlementDate', str, []),
+            ('SettlementDate', date, []),
             ('SettlementPeriod', str, []),
             ('TradeType', str, ['optional']),
             ('TradeName', str, ['optional'])
         ],
         'EURGBFXDATA': [
-            ('SettlementDayFrom', str, []),
-            ('SettlementDayTo', str, ['optional'])
+            ('SettlementDayFrom', date, []),
+            ('SettlementDayTo', date, ['optional'])
         ]
     },
 
     # Replacement Reserve Data
     'ReplacementReserveData': {
         'RRBidData': [
-            ('SettlementDate', str, []),
+            ('SettlementDate', date, []),
             ('SettlementPeriod', str, ['optional']),
             ('BMUnitId', str, ['optional']),
             ('BMUnitType', str, ['optional']),
@@ -399,25 +403,25 @@ METHODS = {
             ('ParticipantId', str, ['optional'])
         ],
         'RRAggregatedInfo': [
-            ('DateTimeFrom', str, []),
-            ('DateTimeTo', str, ['optional'])
+            ('DateTimeFrom', datetime, []),
+            ('DateTimeTo', datetime, ['optional'])
         ],
         'RRActivation': [
-            ('SettlementDate', str, []),
+            ('SettlementDate', date, []),
             ('SettlementPeriod', str, ['optional']),
             ('BMUnitId', str, ['optional'])
         ],
         'RRINTCON': [
-            ('SettlementDate', str, []),
+            ('SettlementDate', date, []),
             ('SettlementPeriod', str, ['optional']),
             ('InterconnectorId', str, ['optional'])
         ],
         'RRGBNM': [
-            ('SettlementDate', str, []),
+            ('SettlementDate', date, []),
             ('SettlementPeriod', str, ['optional'])
         ],
         'RRCashflow': [
-            ('SettlementDate', str, []),
+            ('SettlementDate', date, []),
             ('SettlementPeriod', str, ['optional']),
             ('BMUnitId', str, ['optional'])
         ]
