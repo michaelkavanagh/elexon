@@ -109,6 +109,13 @@ class Elexon(object):
         if method is None:
             return self
 
+        return self.__request(method, args)
+
+    def request(self, method, **kwargs):
+        args = self._add_session_args(kwargs)
+        return self.__request(method, args)
+
+    def __request(self, method, args):
         url = self.get_url( method, self.version )
         request = requests.get( url, params = args)
         request.raise_for_status()
