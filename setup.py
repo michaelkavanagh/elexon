@@ -1,11 +1,14 @@
 import setuptools
+from os import path
 
-with open("README.md", "r") as fh:
+this_directory = path.abspath(path.dirname(__file__))
+
+with open(path.join(this_directory, 'README.md'), "r") as fh:
     long_description = fh.read()
 
 setuptools.setup(
     name="elexon",
-    version="0.0.2",
+    version="0.0.4",
     author="Michael Kavanagh",
     description="A simple wrapper for the Elexon BMRS API",
     long_description=long_description,
