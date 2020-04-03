@@ -133,20 +133,24 @@ class Elexon(object):
     def _parse_response(self, response, method):
         """Parses the response according to the service_type, which should be either 'csv' or 'xml'."""
         if self.service_type == 'xml':
-            return xmltodict.parse(response)['response']
             root = ET.fromstring(response)
             metadata = root.find('./responseMetadata')
             self._check_error(metadata)
 
-            result = []
+            parsed_list = []
             for item in root.findall('./responseBody/responseList/item'):
-                thing = {}
+                item_dict = {}
                 for child in item:
-                    thing[child.tag] = child.text
+                    if child.text is None:
+                        item_dict[child.tag] = None
+                    elif child.tag == 'activeFlag':
+                        item_dict[child.tag] = True if child.text == 'Y' else False
+                    else:
+                        item_dict[child.tag] = self._convert_type(child.text)
 
-                result.append(thing)
+                parsed_list.append(item_dict)
 
-            return result
+            return parsed_list
         elif self.service_type == 'csv':
             return response
         else:
@@ -159,6 +163,25 @@ class Elexon(object):
         description = metadata.find('description').text
         if httpCode != '200':
             raise Exception('Error {} ({}): {}'.format(httpCode, errorType, description))
+
+    def _convert_type(self, s):
+        try:
+            return int(s)
+        except ValueError:
+            pass
+        try:
+            return float(s)
+        except ValueError:
+            pass
+        try:
+            return datetime.strptime(s, '%d/%m/%y %H:%M:%S')
+        except ValueError:
+            pass
+        try:
+            return datetime.strptime(s, '%d/%m/%y')
+        except ValueError:
+            pass
+        return s
 
     def get_url(self, report, version):
         return "https://api.bmreports.com/BMRS/{}/{}".format(report.upper(), version)
