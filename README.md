@@ -7,8 +7,14 @@ or the raw `csv` data is returned as a string.
 
 ## Installing
 
+ 1. Install with [pip](https://pip.pypa.io) (recommended):
 ```Shell
 $ pip install elexon
+```
+ 2. Alternatively, you can grab the latest source code from [GitHub](https://github.com/MichaelKavanagh/elexon):
+```Shell
+$ git clone https://github.com/MichaelKavanagh/elexon.git
+$ python setup.py install
 ```
 
 ## Getting Started
@@ -17,7 +23,13 @@ $ pip install elexon
  3. Replace `API_KEY` in the example below with your API Key.
  4. Profit.
 
-## Example
+## Usage
+
+### Supported Elexon BMRS Reports
+
+For the full list of namespaces, methods, parameters and data types see [methods.py](elexon/methods.py).
+
+### Example
 
 ```python
 from elexon import Elexon
@@ -29,6 +41,11 @@ generation = api.Transparency.B1620(SettlementDate = '2020-01-01', Period = '5')
 # Alternatively, use the general request() function by passing the endpoint in with the arguments:
 generation = api.request('B1620', SettlementDate = '2020-01-01', Period = '5')
 ```
+
+## Contributing
+Pull requests are welcome. For major changes, please open an issue first to discuss what you would like to change.
+
+<!-- Please make sure to update tests as appropriate. -->
 
 ## Further Reading
 
