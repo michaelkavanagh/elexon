@@ -137,8 +137,11 @@ class Elexon(object):
             metadata = root.find('./responseMetadata')
             self._check_error(metadata)
 
+            header = root.find('./responseHeader')
+            body = root.find('./responseBody')
+
             parsed_list = []
-            for item in root.findall('./responseBody/responseList/item'):
+            for item in body.findall('.//item'):
                 item_dict = {}
                 for child in item:
                     if child.text is None:
