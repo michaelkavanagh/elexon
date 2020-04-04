@@ -1,3 +1,4 @@
+import logging
 import requests
 from datetime import date, datetime
 import xml.etree.ElementTree as ET
@@ -89,11 +90,11 @@ class Elexon(object):
     """The Elexon class provides convenient access to Elexon's BMRS API.
     """
 
-    def __init__(self, apikey, service_type = 'xml'):
+    def __init__(self, apikey, elexon_url = ELEXON_URL, service_type = 'xml'):
         self.apikey = apikey
         self.version = 'v1'
         self.service_type = service_type
-        self.elexon_url = ELEXON_URL
+        self.elexon_url = elexon_url
 
         for namespace in METHODS:
             self.__dict__[namespace] = eval(
@@ -112,12 +113,14 @@ class Elexon(object):
         return self.__request(method, args)
 
     def request(self, method, **kwargs):
+        """General request function, takes the report endpoint (method) as first positional arg"""
         args = self._add_session_args(kwargs)
         return self.__request(method, args)
 
     def __request(self, method, args):
         url = self.get_url( method, self.version )
         request = requests.get( url, params = args)
+        logging.info('URL: ' + request.url)
         request.raise_for_status()
         return self._parse_response(request.text, method)
 
@@ -134,14 +137,14 @@ class Elexon(object):
         """Parses the response according to the service_type, which should be either 'csv' or 'xml'."""
         if self.service_type == 'xml':
             root = ET.fromstring(response)
-            metadata = root.find('./responseMetadata')
-            self._check_error(metadata)
+            r_metadata = root.find('./responseMetadata')
+            r_header = root.find('./responseHeader')
+            r_body = root.find('./responseBody')
 
-            header = root.find('./responseHeader')
-            body = root.find('./responseBody')
+            self._check_error(r_metadata)
 
             parsed_list = []
-            for item in body.findall('.//item'):
+            for item in r_body.findall('.//item'):
                 item_dict = {}
                 for child in item:
                     if child.text is None:
@@ -186,5 +189,5 @@ class Elexon(object):
             pass
         return s
 
-    def get_url(self, report, version):
+    def get_url(self, report, version) -> str:
         return "https://api.bmreports.com/BMRS/{}/{}".format(report.upper(), version)

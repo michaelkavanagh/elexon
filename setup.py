@@ -17,7 +17,7 @@ setuptools.setup(
     packages=setuptools.find_packages(),
     entry_points = {
         'console_scripts': [
-            'elexon = elexon.cli:main'
+            'elexon = elexon.__main__:main'
         ]
     },
     classifiers=[
