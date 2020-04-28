@@ -5,7 +5,7 @@ import xml.etree.ElementTree as ET
 
 from .methods import METHODS
 
-ELEXON_URL = 'https://api.bmreports.com/BMRS/'
+ELEXON_URL = 'https://api.bmreports.com/BMRS'
 
 def __fixup_param(name, klass, options, param):
     optional = 'optional' in options
@@ -36,7 +36,7 @@ def __generate_elexon_method(namespace, method_name, param_data):
 
         for param in required:
             if param[0] not in params:
-                raise TypeError("missing parameter %s" % param[0])
+                raise TypeError('missing parameter %s' % param[0])
 
         for name, klass, options in param_data:
             if name in params:
@@ -46,7 +46,7 @@ def __generate_elexon_method(namespace, method_name, param_data):
         return self(method_name, params)
 
     elexon_method.__name__ = method_name
-    elexon_method.__doc__ = "Elexon BMRS API call. See https://www.elexon.co.uk/guidance-note/bmrs-api-data-push-user-guide/"
+    elexon_method.__doc__ = 'Elexon BMRS API call. See https://www.elexon.co.uk/guidance-note/bmrs-api-data-push-user-guide/'
 
     return elexon_method
 
@@ -88,7 +88,7 @@ class Elexon(object):
     def __init__(self, api_key, api_version='v1', api_service_type='xml',
                  session=None, retry_count=1, retry_delay=0, proxies=None):
         if api_key is None:
-            raise TypeError("API key cannot be None")
+            raise TypeError('API key cannot be None')
         self.api_key = api_key
         self.api_version = api_version
         self.api_service_type = api_service_type
@@ -107,7 +107,7 @@ class Elexon(object):
                  # 'elexon.%s' %
                  namespace))
 
-    def __call__(self, method = None, args = None):
+    def __call__(self, method: str = None, args: dict = None):
         """Make a call to Elexon's server."""
         # for Django templates, if this object is called without any arguments
         # return the object itself
@@ -132,16 +132,16 @@ class Elexon(object):
             logging.debug(f'URL: {response.url}')
             raise e
         else:
-            return self._parse_response(response.text, method)
+            return self._parse_response(response, method)
 
     def request(self, method: str, **kwargs):
         """General request function, takes the report endpoint (method) as first positional arg"""
         return self.base_request(method, kwargs)
 
-    def _parse_response(self, response, method):
+    def _parse_response(self, response: requests.Response, method: str):
         """Parses the response according to the api_service_type, which should be either 'csv' or 'xml'."""
         if self.api_service_type == 'xml':
-            root = ET.fromstring(response)
+            root = ET.fromstring(response.text)
             r_metadata = root.find('./responseMetadata')
             r_header = root.find('./responseHeader')
             r_body = root.find('./responseBody')
@@ -163,7 +163,7 @@ class Elexon(object):
 
             return parsed_list
         elif self.api_service_type == 'csv':
-            return response
+            return response.text
         else:
             raise RuntimeError('Invalid service_type specified.')
 
@@ -195,4 +195,4 @@ class Elexon(object):
         return s
 
     def get_url(self, report: str, version: str) -> str:
-        return "https://api.bmreports.com/BMRS/{}/{}".format(report.upper(), version)
+        return ELEXON_URL + '/{}/{}'.format(report.upper(), version)
