@@ -86,8 +86,9 @@ class Elexon(object):
     API-documentation: https://www.elexon.co.uk/guidance-note/bmrs-api-data-push-user-guide/
     """
 
-    def __init__(self, api_key, api_version='v1', api_service_type='xml',
-                 session=None, retry_count=1, retry_delay=0, proxies=None):
+    def __init__(self, api_key: str, api_version: str = 'v1', api_service_type: str = 'xml',
+                 session: requests.Session = None, retry_count: int = 1, retry_delay : int = 0,
+                 proxies: dict = None):
         if api_key is None:
             raise TypeError('API key cannot be None')
         self.api_key = api_key
@@ -108,24 +109,29 @@ class Elexon(object):
                  # 'elexon.%s' %
                  namespace))
 
-    def __call__(self, method: str = None, args: dict = None):
+    def __call__(self, report_name: str = None, args: dict = None):
         """Make a call to Elexon's server."""
         # for Django templates, if this object is called without any arguments
         # return the object itself
-        if method is None:
+        if report_name is None:
             return self
 
-        response = self.base_request(method, args)
-        return self._parse_response(response, method)
+        response = self.base_request(report_name, args)
+        return self._parse_response(response, report_name)
 
-    def base_request(self, method: str, args: dict) -> requests.Response:
+    def request(self, report_name: str, **kwargs):
+        """General request function, takes the report endpoint (method) as first positional arg"""
+        response = self.base_request(report_name, kwargs)
+        return self._parse_response(response, report_name)
+
+    def base_request(self, report_name: str, args: dict) -> requests.Response:
         base_args = {
             'APIKey': self.api_key,
             'ServiceType': self.api_service_type
         }
         args.update(base_args)
 
-        url = self.get_url(method, self.api_version)
+        url = self.get_url(report_name, self.api_version)
         logging.debug(f'Performing request to {url} with params {args}')
         try:
             response = self.session.get(url=url, params=args, proxies=self.proxies)
@@ -136,12 +142,10 @@ class Elexon(object):
         else:
             return response
 
-    def request(self, method: str, **kwargs):
-        """General request function, takes the report endpoint (method) as first positional arg"""
-        response = self.base_request(method, kwargs)
-        return self._parse_response(response, method)
+    def get_url(self, report_name: str, version: str) -> str:
+        return ELEXON_URL + '/{}/{}'.format(report_name.upper(), version)
 
-    def _parse_response(self, response: requests.Response, method: str):
+    def _parse_response(self, response: requests.Response, report_name: str):
         """Parses the response according to the api_service_type, which should be either 'csv' or 'xml'."""
         if self.api_service_type == 'xml':
             root = ET.fromstring(response.text)
@@ -172,11 +176,8 @@ class Elexon(object):
 
     def _check_error(self, metadata) -> None:
         """Checks if the given response is an error, and then raises the appropriate exception."""
-        httpCode = metadata.find('httpCode').text
-        errorType = metadata.find('errorType').text
-        description = metadata.find('description').text
-        if httpCode != '200':
-            raise Exception('Error {} ({}): {}'.format(httpCode, errorType, description))
-
-    def get_url(self, report: str, version: str) -> str:
-        return ELEXON_URL + '/{}/{}'.format(report.upper(), version)
+        r_httpCode = metadata.find('httpCode').text
+        r_errorType = metadata.find('errorType').text
+        r_description = metadata.find('description').text
+        if r_httpCode != '200':
+            raise Exception('Error {} ({}): {}'.format(r_httpCode, r_errorType, r_description))
