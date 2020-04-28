@@ -32,9 +32,9 @@ For the full list of namespaces, methods, parameters and data types see [methods
 ### Example
 
 ```python
-from elexon import Elexon
+from elexon import ElexonRawClient
 
-api = Elexon('API_KEY') # available for free from the Elexon Portal
+api = ElexonRawClient('API_KEY') # available for free from the Elexon Portal
 
 # Actual Aggregated Generation per Type
 generation = api.Transparency.B1620(SettlementDate = '2020-01-01', Period = '5')

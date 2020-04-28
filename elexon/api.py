@@ -80,7 +80,8 @@ def __generate_proxies():
 
 __generate_proxies()
 
-class Elexon(object):
+
+class ElexonRawClient(object):
     """
     Client to perform API calls and return the raw responses
     API-documentation: https://www.elexon.co.uk/guidance-note/bmrs-api-data-push-user-guide/
@@ -181,3 +182,15 @@ class Elexon(object):
         r_description = metadata.find('description').text
         if r_httpCode != '200':
             raise Exception('Error {} ({}): {}'.format(r_httpCode, r_errorType, r_description))
+
+
+class ElexonPandasClient(ElexonRawClient):
+    pass
+
+
+class Elexon(ElexonRawClient):
+    """
+    Keep around for the time being for backwards compatibility purposes
+    TODO: remove before next release??
+    """
+    pass

@@ -1,6 +1,6 @@
 import argparse
 
-from elexon import Elexon
+from elexon import ElexonRawClient
 
 def main():
     """Provide a simple CLI interface to the Elexon BMRS API"""
@@ -10,7 +10,7 @@ def main():
 
     args = parser.parse_args()
 
-    api = Elexon(args.key)
+    api = ElexonRawClient(args.key)
 
 if __name__ == "__main__":
     main()
