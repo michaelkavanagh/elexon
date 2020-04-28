@@ -4,6 +4,7 @@ from datetime import date, datetime
 import xml.etree.ElementTree as ET
 
 from .methods import METHODS
+from .parsers import str_to_real_type
 
 ELEXON_URL = 'https://api.bmreports.com/BMRS'
 
@@ -157,7 +158,7 @@ class Elexon(object):
                     elif child.tag == 'activeFlag':
                         item_dict[child.tag] = True if child.text == 'Y' else False
                     else:
-                        item_dict[child.tag] = self._convert_type(child.text)
+                        item_dict[child.tag] = str_to_real_type(child.text)
 
                 parsed_list.append(item_dict)
 
@@ -174,25 +175,6 @@ class Elexon(object):
         description = metadata.find('description').text
         if httpCode != '200':
             raise Exception('Error {} ({}): {}'.format(httpCode, errorType, description))
-
-    def _convert_type(self, s):
-        try:
-            return int(s)
-        except ValueError:
-            pass
-        try:
-            return float(s)
-        except ValueError:
-            pass
-        try:
-            return datetime.strptime(s, '%d/%m/%y %H:%M:%S')
-        except ValueError:
-            pass
-        try:
-            return datetime.strptime(s, '%d/%m/%y')
-        except ValueError:
-            pass
-        return s
 
     def get_url(self, report: str, version: str) -> str:
         return ELEXON_URL + '/{}/{}'.format(report.upper(), version)
