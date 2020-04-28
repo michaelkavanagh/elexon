@@ -115,9 +115,10 @@ class Elexon(object):
         if method is None:
             return self
 
-        return self.base_request(method, args)
+        response = self.base_request(method, args)
+        return self._parse_response(response, method)
 
-    def base_request(self, method: str, args: dict):
+    def base_request(self, method: str, args: dict) -> requests.Response:
         base_args = {
             'APIKey': self.api_key,
             'ServiceType': self.api_service_type
@@ -133,11 +134,12 @@ class Elexon(object):
             logging.debug(f'URL: {response.url}')
             raise e
         else:
-            return self._parse_response(response, method)
+            return response
 
     def request(self, method: str, **kwargs):
         """General request function, takes the report endpoint (method) as first positional arg"""
-        return self.base_request(method, kwargs)
+        response = self.base_request(method, kwargs)
+        return self._parse_response(response, method)
 
     def _parse_response(self, response: requests.Response, method: str):
         """Parses the response according to the api_service_type, which should be either 'csv' or 'xml'."""
