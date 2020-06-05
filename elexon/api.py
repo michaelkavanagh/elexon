@@ -1,12 +1,15 @@
-import logging
-import requests
 from datetime import date, datetime
 import xml.etree.ElementTree as ET
+
+import logging
+import requests
 
 from .methods import METHODS
 from .parsers import str_to_real_type
 
+
 ELEXON_URL = 'https://api.bmreports.com/BMRS'
+
 
 def __fixup_param(name, klass, options, param):
     optional = 'optional' in options
@@ -22,6 +25,7 @@ def __fixup_param(name, klass, options, param):
         else:
             param = default
     return param
+
 
 def __generate_elexon_method(namespace, method_name, param_data):
     # a required parameter doesn't have 'optional' in the options,
@@ -51,6 +55,7 @@ def __generate_elexon_method(namespace, method_name, param_data):
 
     return elexon_method
 
+
 class Proxy(object):
     """Represents a "namespace" of Elexon BMRS API calls."""
 
@@ -65,6 +70,7 @@ class Proxy(object):
 
         return self._client(method, args)
 
+
 # generate the Elexon BMRS API proxies
 def __generate_proxies():
     for namespace in METHODS:
@@ -77,6 +83,7 @@ def __generate_proxies():
         proxy = type('%sProxy' % namespace.title(), (Proxy,), methods)
 
         globals()[proxy.__name__] = proxy
+
 
 __generate_proxies()
 

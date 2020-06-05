@@ -10,11 +10,19 @@ def str_to_real_type(s):
     except ValueError:
         pass
     try:
-        return datetime.strptime(s, '%d/%m/%y %H:%M:%S')
+        return datetime.strptime(s, '%d/%m/%Y %H:%M:%S')
     except ValueError:
         pass
     try:
-        return datetime.strptime(s, '%d/%m/%y')
+        return datetime.strptime(s, '%Y-%m-%d %H:%M:%S')
+    except ValueError:
+        pass
+    try:
+        return datetime.strptime(s, '%d/%m/%Y')
+    except ValueError:
+        pass
+    try:
+        return datetime.strptime(s, '%Y-%m-%d')
     except ValueError:
         pass
     return s
