@@ -39,6 +39,12 @@ generation = api.Transparency.B1620(SettlementDate = '2020-01-01', Period = '5')
 generation = api.request('B1620', SettlementDate = '2020-01-01', Period = '5')
 ```
 
+## Support
+
+There have been cases where the wrapper/API doesn't behave due to inconsistencies or errors in Elexon's documentation.
+
+If you believe you have come across a bug, please open a [GitHub issue](https://github.com/MichaelKavanagh/elexon/issues).
+
 ## Contributing
 Pull requests are welcome. For major changes, please open an issue first to discuss what you would like to change.
 

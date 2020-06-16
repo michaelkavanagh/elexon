@@ -8,7 +8,7 @@ with open(path.join(this_directory, 'README.md'), "r") as fh:
 
 setuptools.setup(
     name="elexon",
-    version="0.1.0",
+    version="0.1.1",
     author="Michael Kavanagh",
     description="A simple wrapper for the Elexon BMRS API",
     long_description=long_description,

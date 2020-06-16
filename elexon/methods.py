@@ -86,7 +86,7 @@ METHODS = {
         'B1610': [
             ('SettlementDate', date, []),
             ('Period', str, []),
-            ('NGCBMUnitID', str, [])
+            ('NGCBMUnitID', str, ['optional'])
         ],
         'B1620': [
             ('SettlementDate', date, []),
