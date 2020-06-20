@@ -166,7 +166,7 @@ class ElexonRawClient(object):
             parsed_list = []
             for item in r_body.findall('.//item'):
                 item_dict = {}
-                expand_xml_item(item, parsed_list, item_dict)
+                expand_xml_item(item, item_dict)
                 parsed_list.append(item_dict)
 
             return parsed_list

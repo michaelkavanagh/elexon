@@ -1,7 +1,7 @@
 from datetime import date, datetime
 
 
-def expand_xml_item(elem, list_: list = [], dict_: dict = {}, depth: int = 0):
+def expand_xml_item(elem, dict_: dict = {}, depth: int = 0):
     '''
     convert an XML node (and all of its children) into a nested
     list-dictionary-list-dictionary-... structure (mess)
@@ -19,12 +19,11 @@ def expand_xml_item(elem, list_: list = [], dict_: dict = {}, depth: int = 0):
         if depth == 0:
             # avoid unnecessary nesting under 'item' tags
             for child in elem:
-                expand_xml_item(child, list_, dict_, depth + 1)
+                expand_xml_item(child, dict_, depth + 1)
         else:
-            list_2 = []
             dict_2 = {}
             for child in elem:
-                expand_xml_item(child, list_2, dict_2, depth + 1)
+                expand_xml_item(child, dict_2, depth + 1)
 
             if elem.tag in dict_.keys():
                 # Deal with multiple child nodes with the same name:
