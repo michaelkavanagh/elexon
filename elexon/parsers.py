@@ -2,10 +2,10 @@ from datetime import date, datetime
 
 
 def expand_xml_item(elem, dict_: dict = {}, depth: int = 0):
-    '''
-    convert an XML node (and all of its children) into a nested
+    """
+    Recursively convert an XML node (and all of its children) into a nested
     list-dictionary-list-dictionary-... structure (mess)
-    '''
+    """
     if len(elem) == 0:
         if elem.text is None:
             dict_[elem.tag] = None
