@@ -30,7 +30,7 @@ def expand_xml_item(elem, dict_: dict = {}, depth: int = 0):
                 # form a nested list within the dict value (see B1610)
                 try:
                     dict_[elem.tag].append(dict_2)
-                except:
+                except AttributeError:
                     temp = dict_[elem.tag]
                     dict_[elem.tag] = []
                     dict_[elem.tag].append(temp)
