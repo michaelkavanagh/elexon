@@ -5,7 +5,7 @@ import logging
 import requests
 
 from .methods import METHODS
-from .parsers import str_to_real_type
+from .parsers import expand_xml_item
 
 
 ELEXON_URL = 'https://api.bmreports.com/BMRS'
@@ -166,14 +166,7 @@ class ElexonRawClient(object):
             parsed_list = []
             for item in r_body.findall('.//item'):
                 item_dict = {}
-                for child in item:
-                    if child.text is None:
-                        item_dict[child.tag] = None
-                    elif child.tag == 'activeFlag':
-                        item_dict[child.tag] = True if child.text == 'Y' else False
-                    else:
-                        item_dict[child.tag] = str_to_real_type(child.text)
-
+                expand_xml_item(item, parsed_list, item_dict)
                 parsed_list.append(item_dict)
 
             return parsed_list
