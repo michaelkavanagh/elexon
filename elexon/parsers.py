@@ -14,7 +14,6 @@ def expand_xml_item(elem, dict_: dict = {}, depth: int = 0):
         else:
             dict_[elem.tag] = str_to_real_type(elem.text)
 
-        return
     else:
         if depth == 0:
             # avoid unnecessary nesting under 'item' tags
