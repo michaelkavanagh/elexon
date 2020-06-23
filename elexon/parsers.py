@@ -56,11 +56,11 @@ def str_to_real_type(s):
     except ValueError:
         pass
     try:
-        return datetime.strptime(s, '%d/%m/%Y')
+        return datetime.strptime(s, '%d/%m/%Y').date()
     except ValueError:
         pass
     try:
-        return datetime.strptime(s, '%Y-%m-%d')
+        return datetime.strptime(s, '%Y-%m-%d').date()
     except ValueError:
         pass
     return s
