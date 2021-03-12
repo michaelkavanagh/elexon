@@ -1,13 +1,11 @@
-from datetime import date, datetime
+import logging
 import xml.etree.ElementTree as ET
 
-import logging
 import requests
 
 from .exceptions import NoContentException
 from .methods import METHODS
 from .parsers import expand_xml_item
-
 
 ELEXON_URL = 'https://api.bmreports.com/BMRS'
 
@@ -96,7 +94,7 @@ class ElexonRawClient(object):
     """
 
     def __init__(self, api_key: str, api_version: str = 'v1', api_service_type: str = 'xml',
-                 session: requests.Session = None, retry_count: int = 1, retry_delay : int = 0,
+                 session: requests.Session = None, retry_count: int = 1, retry_delay: int = 0,
                  proxies: dict = None):
         if api_key is None:
             raise TypeError('API key cannot be None')
