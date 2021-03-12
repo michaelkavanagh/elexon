@@ -4,6 +4,7 @@ import xml.etree.ElementTree as ET
 import logging
 import requests
 
+from .exceptions import NoContentException
 from .methods import METHODS
 from .parsers import expand_xml_item
 
@@ -180,6 +181,8 @@ class ElexonRawClient(object):
         r_httpCode = metadata.find('httpCode').text
         r_errorType = metadata.find('errorType').text
         r_description = metadata.find('description').text
+        if r_httpCode == "204":
+            raise NoContentException('Error {} ({}): {}'.format(r_httpCode, r_errorType, r_description))
         if r_httpCode != '200':
             raise Exception('Error {} ({}): {}'.format(r_httpCode, r_errorType, r_description))
 
