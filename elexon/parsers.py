@@ -59,4 +59,5 @@ def str_to_real_type(s):
         return datetime.strptime(s, '%H:%M:%S %Z').time()
     except ValueError:
         pass
+    
     return s
