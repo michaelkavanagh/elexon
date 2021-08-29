@@ -2,5 +2,5 @@ certifi==2019.11.28
 chardet==3.0.4
 idna==2.9
 pytest==5.4.3
-requests==2.23.0
-urllib3==1.25.8
+requests==2.26.0
+urllib3==1.26.6
