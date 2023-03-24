@@ -150,7 +150,7 @@ class ElexonRawClient(object):
             return response
 
     def get_url(self, report_name: str, version: str) -> str:
-        return ELEXON_URL + '/{}/{}'.format(report_name.upper(), version)
+        return ELEXON_URL + '/{}/{}'.format(report_name, version)
 
     def _parse_response(self, response: requests.Response, report_name: str):
         """Parses the response according to the api_service_type, which should be either 'csv' or 'xml'."""
